@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GovMentor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">GovMentor</div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="../assets/images/admin-avatar.png" alt="Admin Avatar" id="adminAvatar">
+                </div>
+                <div class="user-info">
+                    <h4 id="adminName">Admin</h4>
+                    <span class="badge admin-badge">Administrator</span>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="active">
+                    <a href="dashboard-admin.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mentors.html">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Mentors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sessions.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Sessions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="content.html">
+                        <i class="fas fa-book"></i>
+                        <span>Content</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-actions">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <span class="badge">12</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/images/admin-avatar.png" alt="Admin" class="avatar-sm">
+                    <span id="adminNameTop">Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome back, <span id="greetingName">Admin</span>! Here's your system overview.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e3f2fd;">
+                        <i class="fas fa-users" style="color: #1976d2;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalUsers">1,248</h3>
+                        <p>Total Users</p>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 12% from last month
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e8f5e9;">
+                        <i class="fas fa-chalkboard-teacher" style="color: #388e3c;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalMentors">86</h3>
+                        <p>Active Mentors</p>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 5% from last month
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fff8e1;">
+                        <i class="fas fa-calendar-check" style="color: #ffa000;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalSessions">1,024</h3>
+                        <p>Sessions This Month</p>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 18% from last month
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #f3e5f5;">
+                        <i class="fas fa-rupee-sign" style="color: #8e24aa;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₹2.4L</h3>
+                        <p>Monthly Revenue</p>
+                        <div class="stat-trend down">
+                            <i class="fas fa-arrow-down"></i> 2% from last month
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats & Recent Activity -->
+            <div class="dashboard-row">
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Stats</h3>
+                            <div class="card-actions">
+                                <button class="btn btn-sm btn-outline">Export</button>
+                            </div>
+                        </div>
+                        <div class="quick-stats">
+                            <div class="quick-stat-item">
+                                <div class="stat-label">New Users (7d)</div>
+                                <div class="stat-value">148</div>
+                                <div class="stat-change up">
+                                    <i class="fas fa-arrow-up"></i> 12%
+                                </div>
+                            </div>
+                            <div class="quick-stat-item">
+                                <div class="stat-label">Active Sessions (Today)</div>
+                                <div class="stat-value">42</div>
+                                <div class="stat-change up">
+                                    <i class="fas fa-arrow-up"></i> 8%
+                                </div>
+                            </div>
+                            <div class="quick-stat-item">
+                                <div class="stat-label">Pending Approvals</div>
+                                <div class="stat-value">17</div>
+                                <div class="stat-change down">
+                                    <i class="fas fa-arrow-down"></i> 3%
+                                </div>
+                            </div>
+                            <div class="quick-stat-item">
+                                <div class="stat-label">Support Tickets</div>
+                                <div class="stat-value">9</div>
+                                <div class="stat-change up">
+                                    <i class="fas fa-arrow-up"></i> 2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card mt-4">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                            <a href="#" class="btn btn-sm btn-outline">View All</a>
+                        </div>
+                        <div class="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: #e3f2fd;">
+                                    <i class="fas fa-user-plus" style="color: #1976d2;"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>New user registered:</strong> rahul.sharma@example.com</p>
+                                    <span class="activity-time">10 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: #e8f5e9;">
+                                    <i class="fas fa-check-circle" style="color: #388e3c;"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>Mentor approved:</strong> Dr. Priya Patel</p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: #fff3e0;">
+                                    <i class="fas fa-exclamation-triangle" style="color: #ffa000;"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>Report generated:</strong> Monthly Revenue Report (Jan 2026)</p>
+                                    <span class="activity-time">3 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: #f3e5f5;">
+                                    <i class="fas fa-upload" style="color: #8e24aa;"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>New content uploaded:</strong> UPSC Prelims 2025 PYQs</p>
+                                    <span class="activity-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon" style="background-color: #fce4ec;">
+                                    <i class="fas fa-ticket-alt" style="color: #c2185b;"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <p><strong>New support ticket:</strong> #TKT-0042 - Payment Issue</p>
+                                    <span class="activity-time">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>User Growth</h3>
+                            <div class="card-actions">
+                                <select class="form-select">
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option>Last 90 Days</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="height: 300px;">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>User growth chart will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card mt-4">
+                        <div class="card-header">
+                            <h3>Recent Users</h3>
+                            <a href="users.html" class="btn btn-sm btn-outline">View All</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Joined</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="user-cell">
+                                                <img src="../assets/images/student1.jpg" alt="User" class="avatar-xs">
+                                                <span>Aarav Patel</span>
+                                            </div>
+                                        </td>
+                                        <td>aarav.patel@example.com</td>
+                                        <td><span class="badge student-badge">Student</span></td>
+                                        <td>Today</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="btn-icon" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn-icon" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-cell">
+                                                <img src="../assets/images/mentor1.jpg" alt="User" class="avatar-xs">
+                                                <span>Dr. Neha Sharma</span>
+                                            </div>
+                                        </td>
+                                        <td>neha.sharma@example.com</td>
+                                        <td><span class="badge mentor-badge">Mentor</span></td>
+                                        <td>2 days ago</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="btn-icon" title="Approve">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <button class="btn-icon" title="Reject">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-cell">
+                                                <img src="../assets/images/student2.jpg" alt="User" class="avatar-xs">
+                                                <span>Priya Gupta</span>
+                                            </div>
+                                        </td>
+                                        <td>priya.gupta@example.com</td>
+                                        <td><span class="badge student-badge">Student</span></td>
+                                        <td>3 days ago</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="btn-icon" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn-icon" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-cell">
+                                                <img src="../assets/images/mentor2.jpg" alt="User" class="avatar-xs">
+                                                <span>Prof. Rajesh Kumar</span>
+                                            </div>
+                                        </td>
+                                        <td>rajesh.kumar@example.com</td>
+                                        <td><span class="badge mentor-badge">Mentor</span></td>
+                                        <td>1 week ago</td>
+                                        <td><span class="status-badge active">Active</span></td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="btn-icon" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn-icon" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="user-cell">
+                                                <img src="../assets/images/student3.jpg" alt="User" class="avatar-xs">
+                                                <span>Rahul Verma</span>
+                                            </div>
+                                        </td>
+                                        <td>rahul.verma@example.com</td>
+                                        <td><span class="badge student-badge">Student</span></td>
+                                        <td>1 week ago</td>
+                                        <td><span class="status-badge inactive">Inactive</span></td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="btn-icon" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn-icon" title="Activate">
+                                                    <i class="fas fa-power-off"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Status -->
+            <div class="dashboard-card mt-4">
+                <div class="card-header">
+                    <h3>System Status</h3>
+                    <div class="card-actions">
+                        <span class="last-updated">Last updated: Just now</span>
+                        <button class="btn btn-sm btn-outline">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="system-status">
+                    <div class="status-item online">
+                        <div class="status-indicator"></div>
+                        <div class="status-info">
+                            <h4>Web Server</h4>
+                            <p>Running smoothly</p>
+                        </div>
+                        <div class="status-metrics">
+                            <div class="metric">
+                                <span class="metric-label">CPU</span>
+                                <div class="progress thin">
+                                    <div class="progress-bar" style="width: 32%; background-color: #4caf50;"></div>
+                                </div>
+                                <span class="metric-value">32%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Memory</span>
+                                <div class="progress thin">
+                                    <div class="progress-bar" style="width: 58%; background-color: #ff9800;"></div>
+                                </div>
+                                <span class="metric-value">58%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-item online">
+                        <div class="status-indicator"></div>
+                        <div class="status-info">
+                            <h4>Database</h4>
+                            <p>All systems operational</p>
+                        </div>
+                        <div class="status-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Queries</span>
+                                <span class="metric-value">124/s</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Connections</span>
+                                <span class="metric-value">42</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-item warning">
+                        <div class="status-indicator"></div>
+                        <div class="status-info">
+                            <h4>Storage</h4>
+                            <p>Running low on space</p>
+                        </div>
+                        <div class="status-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Used</span>
+                                <div class="progress thin">
+                                    <div class="progress-bar" style="width: 88%; background-color: #f44336;"></div>
+                                </div>
+                                <span class="metric-value">88% (1.2TB/1.5TB)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-item online">
+                        <div class="status-indicator"></div>
+                        <div class="status-info">
+                            <h4>API</h4>
+                            <p>All endpoints operational</p>
+                        </div>
+                        <div class="status-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">142ms</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Uptime</span>
+                                <span class="metric-value">99.98%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <!-- DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js" type="module"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        // Initialize DataTable
+        $(document).ready(function() {
+            $('.data-table').DataTable({
+                responsive: true,
+                paging: false,
+                searching: false,
+                info: false,
+                order: [[3, 'desc']] // Sort by Join Date by default
+            });
+            
+            // Update admin info
+            const adminName = localStorage.getItem('adminName') || 'Admin';
+            document.getElementById('adminName').textContent = adminName;
+            document.getElementById('adminNameTop').textContent = adminName;
+            document.getElementById('greetingName').textContent = adminName.split(' ')[0];
+            
+            // Set up logout button
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Logout logic will be handled by auth.js
+            });
+            
+            // Toggle sidebar on mobile
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            // Initialize any admin-specific functionality
+            initializeAdminDashboard();
+        });
+        
+        function initializeAdminDashboard() {
+            // Add any admin dashboard specific initialization code here
+            console.log('Admin dashboard initialized');
+            
+            // Example: Fetch and update stats
+            fetchAdminStats();
+        }
+        
+        function fetchAdminStats() {
+            // This would be replaced with actual API calls in a real application
+            setTimeout(() => {
+                // Simulate API call
+                const stats = {
+                    totalUsers: '1,284',
+                    totalMentors: '92',
+                    totalSessions: '1,156',
+                    monthlyRevenue: '₹2.8L'
+                };
+                
+                // Update the UI with the fetched data
+                document.getElementById('totalUsers').textContent = stats.totalUsers;
+                document.getElementById('totalMentors').textContent = stats.totalMentors;
+                document.getElementById('totalSessions').textContent = stats.totalSessions;
+                
+                // You would update other elements similarly
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

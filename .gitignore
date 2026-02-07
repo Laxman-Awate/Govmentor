@@ -1,0 +1,10 @@
+# Node
+node_modules/
+**/node_modules/
+
+# Frontend build
+dist/
+build/
+
+# Env
+.env

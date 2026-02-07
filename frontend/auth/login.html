@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GovMentor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="../index.html" class="logo">GovMentor</a>
+                <h1>Welcome Back</h1>
+                <p>Sign in to continue to your account</p>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                        <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="d-flex justify-content-between">
+                        <label for="login-password">Password</label>
+                        <a href="forgot-password.html" class="text-sm">Forgot password?</a>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('login-password')">
+                            <i class="far fa-eye" data-target="login-password"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="remember-me">
+                    <label class="form-check-label" for="remember-me">Remember me</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn btn-outline btn-social">
+                        <img src="../assets/icons/google.svg" alt="Google">
+                        Google
+                    </button>
+                    <button type="button" class="btn btn-outline btn-social">
+                        <img src="../assets/icons/facebook.svg" alt="Facebook">
+                        Facebook
+                    </button>
+                </div>
+                
+                <div class="auth-footer">
+                    Don't have an account? <a href="signup.html">Sign up</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="auth-illustration">
+            <img src="../assets/images/auth-illustration.svg" alt="Login Illustration">
+            <div class="illustration-text">
+                <h2>Prepare Smarter, Not Harder</h2>
+                <p>Access personalized study plans, expert mentors, and comprehensive resources to ace your government exams.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js" type="module"></script>
+    
+    <script>
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.querySelector(`[data-target="${inputId}"]`);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

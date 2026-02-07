@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - GovMentor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">GovMentor</div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="../assets/images/avatar-placeholder.png" alt="User Avatar" id="userAvatar">
+                </div>
+                <div class="user-info">
+                    <h4 id="userName">Loading...</h4>
+                    <span class="badge student-badge">Student</span>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="active">
+                    <a href="dashboard-student.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../mentors/mentors.html">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Find Mentors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../studyhub/studyhub.html">
+                        <i class="fas fa-book"></i>
+                        <span>Study Hub</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../ai/ai-studyplan.html">
+                        <i class="fas fa-tasks"></i>
+                        <span>Study Plan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../ai/ai-doubtsolver.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Doubt Solver</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Progress</span>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-actions">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/images/avatar-placeholder.png" alt="User" class="avatar-sm">
+                    <span id="userNameTop">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p>Welcome back, <span id="greetingName">Student</span>! Here's your study overview.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e3f2fd;">
+                        <i class="fas fa-book" style="color: #1976d2;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>12</h3>
+                        <p>Active Courses</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e8f5e9;">
+                        <i class="fas fa-tasks" style="color: #388e3c;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Completed Topics</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fff8e1;">
+                        <i class="fas fa-calendar-check" style="color: #ffa000;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Upcoming Sessions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #f3e5f5;">
+                        <i class="fas fa-trophy" style="color: #8e24aa;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>85%</h3>
+                        <p>Overall Progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Sessions -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2>Upcoming Sessions</h2>
+                    <a href="#" class="btn btn-outline">View All</a>
+                </div>
+                <div class="sessions-list">
+                    <div class="session-card">
+                        <div class="session-time">
+                            <div class="time">10:00 AM</div>
+                            <div class="date">Tomorrow</div>
+                        </div>
+                        <div class="session-details">
+                            <h3>Mathematics - Algebra</h3>
+                            <p class="mentor">With: <span>Dr. Sharma</span></p>
+                            <div class="session-actions">
+                                <button class="btn btn-sm btn-primary">Join Now</button>
+                                <button class="btn btn-sm btn-outline">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More session cards can be added here -->
+                </div>
+            </div>
+
+            <!-- Study Progress -->
+            <div class="dashboard-row">
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Study Progress</h3>
+                            <div class="card-actions">
+                                <select class="form-select">
+                                    <option>This Week</option>
+                                    <option>This Month</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <!-- Chart will be rendered here -->
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Study progress chart will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="../studyhub/mocktests.html" class="quick-action">
+                                <div class="action-icon" style="background-color: #e3f2fd;">
+                                    <i class="fas fa-clipboard-check" style="color: #1976d2;"></i>
+                                </div>
+                                <span>Take Mock Test</span>
+                            </a>
+                            <a href="../ai/ai-studyplan.html" class="quick-action">
+                                <div class="action-icon" style="background-color: #e8f5e9;">
+                                    <i class="fas fa-tasks" style="color: #388e3c;"></i>
+                                </div>
+                                <span>Create Study Plan</span>
+                            </a>
+                            <a href="../mentors/mentors.html" class="quick-action">
+                                <div class="action-icon" style="background-color: #fff8e1;">
+                                    <i class="fas fa-chalkboard-teacher" style="color: #ffa000;"></i>
+                                </div>
+                                <span>Book Mentor</span>
+                            </a>
+                            <a href="../studyhub/pyqs.html" class="quick-action">
+                                <div class="action-icon" style="background-color: #f3e5f5;">
+                                    <i class="fas fa-book-open" style="color: #8e24aa;"></i>
+                                </div>
+                                <span>Practice PYQs</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js" type="module"></script>
+    <script src="../js/dashboard.js"></script>
+    
+    <script>
+        // Update user info in the dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be populated from Firebase Auth in a real app
+            const userName = localStorage.getItem('userName') || 'Student';
+            document.getElementById('userName').textContent = userName;
+            document.getElementById('userNameTop').textContent = userName;
+            document.getElementById('greetingName').textContent = userName.split(' ')[0];
+            
+            // Set up logout button
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Logout logic will be handled by auth.js
+            });
+            
+            // Toggle sidebar on mobile
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

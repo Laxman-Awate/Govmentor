@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard - GovMentor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">GovMentor</div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="../assets/images/mentor-avatar.png" alt="Mentor Avatar" id="mentorAvatar">
+                </div>
+                <div class="user-info">
+                    <h4 id="mentorName">Loading...</h4>
+                    <span class="badge mentor-badge">Mentor</span>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.9</span>
+                        <span class="text-muted">(128 reviews)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="active">
+                    <a href="dashboard-mentor.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../mentors/profile.html">
+                        <i class="fas fa-user-edit"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../mentors/sessions.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Sessions</span>
+                        <span class="badge badge-primary">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../mentors/students.html">
+                        <i class="fas fa-users"></i>
+                        <span>My Students</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-wallet"></i>
+                        <span>Earnings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../studyhub/resources.html">
+                        <i class="fas fa-book"></i>
+                        <span>Resources</span>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-actions">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/images/mentor-avatar.png" alt="Mentor" class="avatar-sm">
+                    <span id="mentorNameTop">Mentor</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <h1>Mentor Dashboard</h1>
+                <p>Welcome back, <span id="greetingName">Mentor</span>! Here's your session overview.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e3f2fd;">
+                        <i class="fas fa-calendar-check" style="color: #1976d2;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>12</h3>
+                        <p>Upcoming Sessions</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #e8f5e9;">
+                        <i class="fas fa-users" style="color: #388e3c;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>24</h3>
+                        <p>Active Students</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fff8e1;">
+                        <i class="fas fa-wallet" style="color: #ffa000;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>₹24,500</h3>
+                        <p>This Month's Earnings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #f3e5f5;">
+                        <i class="fas fa-star" style="color: #8e24aa;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>4.9</h3>
+                        <p>Average Rating</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Sessions -->
+            <div class="dashboard-row">
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Today's Sessions</h3>
+                            <a href="../mentors/sessions.html" class="btn btn-sm btn-outline">View All</a>
+                        </div>
+                        <div class="sessions-list">
+                            <div class="session-card">
+                                <div class="session-time">
+                                    <div class="time">10:00 AM</div>
+                                    <div class="date">In 30 mins</div>
+                                </div>
+                                <div class="session-details">
+                                    <h3>Mathematics - Algebra</h3>
+                                    <p class="student">With: <span>Rahul Sharma</span></p>
+                                    <div class="session-actions">
+                                        <button class="btn btn-sm btn-primary">Start Session</button>
+                                        <button class="btn btn-sm btn-outline">Reschedule</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="session-card">
+                                <div class="session-time">
+                                    <div class="time">02:30 PM</div>
+                                    <div class="date">Today</div>
+                                </div>
+                                <div class="session-details">
+                                    <h3>General Studies - History</h3>
+                                    <p class="student">With: <span>Priya Patel</span></p>
+                                    <div class="session-actions">
+                                        <button class="btn btn-sm btn-primary">Start Session</button>
+                                        <button class="btn btn-sm btn-outline">Reschedule</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Session Requests</h3>
+                            <span class="badge badge-primary">3 New</span>
+                        </div>
+                        <div class="requests-list">
+                            <div class="request-item">
+                                <div class="request-info">
+                                    <div class="student-avatar">
+                                        <img src="../assets/images/student1.jpg" alt="Student">
+                                    </div>
+                                    <div class="request-details">
+                                        <h4>Ananya Gupta</h4>
+                                        <p>Mathematics - Calculus</p>
+                                        <span class="text-muted">Requested for: Tomorrow, 4:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="request-actions">
+                                    <button class="btn btn-sm btn-success">Accept</button>
+                                    <button class="btn btn-sm btn-outline">Decline</button>
+                                </div>
+                            </div>
+                            
+                            <div class="request-item">
+                                <div class="request-info">
+                                    <div class="student-avatar">
+                                        <img src="../assets/images/student2.jpg" alt="Student">
+                                    </div>
+                                    <div class="request-details">
+                                        <h4>Vikram Singh</h4>
+                                        <p>General Studies - Polity</p>
+                                        <span class="text-muted">Requested for: Feb 10, 11:00 AM</span>
+                                    </div>
+                                </div>
+                                <div class="request-actions">
+                                    <button class="btn btn-sm btn-success">Accept</button>
+                                    <button class="btn btn-sm btn-outline">Decline</button>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center p-3">
+                                <a href="../mentors/requests.html" class="btn btn-link">View All Requests</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Earnings & Performance -->
+            <div class="dashboard-row">
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Earnings Overview</h3>
+                            <div class="card-actions">
+                                <select class="form-select">
+                                    <option>This Month</option>
+                                    <option>Last Month</option>
+                                    <option>Last 3 Months</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Earnings chart will appear here</p>
+                            </div>
+                        </div>
+                        <div class="earnings-summary">
+                            <div class="earnings-item">
+                                <span class="earnings-label">Completed Sessions</span>
+                                <span class="earnings-value">18</span>
+                            </div>
+                            <div class="earnings-item">
+                                <span class="earnings-label">Total Earnings</span>
+                                <span class="earnings-value">₹36,750</span>
+                            </div>
+                            <div class="earnings-item">
+                                <span class="earnings-label">Available Balance</span>
+                                <span class="earnings-value">₹28,500</span>
+                            </div>
+                            <button class="btn btn-primary btn-block mt-3">Withdraw Earnings</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-col">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Performance Metrics</h3>
+                        </div>
+                        <div class="metrics-container">
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-label">Student Satisfaction</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 92%; background-color: #4caf50;"></div>
+                                    </div>
+                                </div>
+                                <span class="metric-value">92%</span>
+                            </div>
+                            
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-label">Session Completion</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 88%; background-color: #2196f3;"></div>
+                                    </div>
+                                </div>
+                                <span class="metric-value">88%</span>
+                            </div>
+                            
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-label">Response Time</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 95%; background-color: #ff9800;"></div>
+                                    </div>
+                                </div>
+                                <span class="metric-value">Under 2h</span>
+                            </div>
+                            
+                            <div class="metric-item">
+                                <div class="metric-info">
+                                    <span class="metric-label">Student Retention</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 85%; background-color: #9c27b0;"></div>
+                                    </div>
+                                </div>
+                                <span class="metric-value">85%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-reviews">
+                            <div class="card-header">
+                                <h3>Recent Reviews</h3>
+                                <a href="#" class="btn btn-sm btn-outline">See All</a>
+                            </div>
+                            
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer">
+                                        <img src="../assets/images/student3.jpg" alt="Student" class="avatar-sm">
+                                        <div>
+                                            <h4>Neha Verma</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="review-date">2 days ago</span>
+                                </div>
+                                <p class="review-text">Amazing session! The mentor explained complex topics in a very simple way. Highly recommended for anyone preparing for government exams.</p>
+                            </div>
+                            
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer">
+                                        <img src="../assets/images/student4.jpg" alt="Student" class="avatar-sm">
+                                        <div>
+                                            <h4>Rahul Mehta</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="review-date">5 days ago</span>
+                                </div>
+                                <p class="review-text">Good session overall, but would appreciate more practice questions. The mentor's knowledge is excellent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js" type="module"></script>
+    <script src="../js/dashboard.js"></script>
+    
+    <script>
+        // Update mentor info in the dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be populated from Firebase Auth in a real app
+            const mentorName = localStorage.getItem('mentorName') || 'Mentor';
+            document.getElementById('mentorName').textContent = mentorName;
+            document.getElementById('mentorNameTop').textContent = mentorName;
+            document.getElementById('greetingName').textContent = mentorName.split(' ')[0];
+            
+            // Set up logout button
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                // Logout logic will be handled by auth.js
+            });
+            
+            // Toggle sidebar on mobile
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            // Initialize any mentor-specific functionality
+            initializeMentorDashboard();
+        });
+        
+        function initializeMentorDashboard() {
+            // Add any mentor dashboard specific initialization code here
+            console.log('Mentor dashboard initialized');
+        }
+    </script>
+</body>
+</html>
