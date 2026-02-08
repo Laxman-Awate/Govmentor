@@ -5,20 +5,7 @@ function Home() {
   return (
     <div className="home-page">
       {/* Navbar */}
-      <nav className="navbar">
-        <div className="container">
-          <Link to="/" className="logo">GovMentor</Link>
-          <ul className="nav-links">
-            <li><Link to="/" className="active">Home</Link></li>
-            <li><Link to="/mentors">Find Mentors</Link></li>
-            <li><Link to="/studyhub">Study Hub</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/pricing">Pricing</Link></li>
-            <li><Link to="/login" className="btn btn-outline">Login</Link></li>
-            <li><Link to="/register" className="btn btn-primary">Sign Up</Link></li>
-          </ul>
-        </div>
-      </nav>
+    
 
       {/* Hero Section */}
       <section className="hero">

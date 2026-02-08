@@ -1,75 +1,52 @@
-// frontend/src/components/Navbar.js
-import { Link, useNavigate } from 'react-router-dom';
+// src/components/Navbar.js
+import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
-    const { currentUser, logout } = useAuth();
-    const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
-    return (
-        <nav className="navbar">
-            <div className="navbar-brand">
-                <Link to="/" className="logo">GovMentor</Link>
+  // Check if current route is active
+  const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="container">
+        <Link to="/" className="logo">GovMentor</Link>
+        
+        <div className="nav-links">
+          <Link to="/" className={`nav-link ${isActive('/')}`}>Home</Link>
+          <Link to="/mentors" className={`nav-link ${isActive('/mentors')}`}>Find Mentors</Link>
+          <Link to="/study-hub" className={`nav-link ${isActive('/study-hub')}`}>Study Hub</Link>
+          <Link to="/about" className={`nav-link ${isActive('/about')}`}>About</Link>
+          <Link to="/pricing" className={`nav-link ${isActive('/pricing')}`}>Pricing</Link>
+          
+          {currentUser ? (
+            <div className="user-nav">
+              <span className="username">Hi, {currentUser.username}</span>
+              <button onClick={handleLogout} className="btn btn-outline btn-sm">
+                Logout
+              </button>
             </div>
-            
-            {currentUser ? (
-                <div className="navbar-menu">
-                    <div className="navbar-start">
-                        <Link to={`/${currentUser.role}`} className="navbar-item">
-                            Dashboard
-                        </Link>
-                        <Link to={`/${currentUser.role}/sessions`} className="navbar-item">
-                            My Sessions
-                        </Link>
-                        {currentUser.role === 'student' && (
-                            <Link to="/student/mentors" className="navbar-item">
-                                Find Mentors
-                            </Link>
-                        )}
-                    </div>
-                    <div className="navbar-end">
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <div className="navbar-link">
-                                <span className="icon-text">
-                                    <span className="icon">
-                                        <i className="fas fa-user"></i>
-                                    </span>
-                                    <span>{currentUser.username}</span>
-                                </span>
-                            </div>
-                            <div className="navbar-dropdown">
-                                <Link to={`/${currentUser.role}/profile`} className="navbar-item">
-                                    Profile
-                                </Link>
-                                <hr className="navbar-divider" />
-                                <button onClick={handleLogout} className="navbar-item button is-ghost">
-                                    Logout
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <div className="navbar-end">
-                    <div className="navbar-item">
-                        <div className="buttons">
-                            <Link to="/register" className="button is-primary">
-                                <strong>Sign up</strong>
-                            </Link>
-                            <Link to="/login" className="button is-light">
-                                Log in
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </nav>
-    );
+          ) : (
+            <div className="auth-buttons">
+              <Link to="/login" className="btn btn-outline">Login</Link>
+              <Link to="/register" className="btn btn-primary">Sign Up</Link>
+            </div>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
