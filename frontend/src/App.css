@@ -1,0 +1,145 @@
+/* LAYOUT */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f6f8fc;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #111827;
+  color: white;
+  padding: 1.5rem;
+}
+
+.sidebar .logo {
+  margin-bottom: 2rem;
+}
+
+.sidebar nav a {
+  display: block;
+  color: #d1d5db;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  color: white;
+}
+
+/* MAIN */
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* HEADER */
+.dashboard-header h1 {
+  font-size: 2rem;
+}
+
+.dashboard-header p {
+  color: #6b7280;
+}
+
+/* STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 14px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.stat-icon {
+  background: #eef2ff;
+  padding: 1rem;
+  border-radius: 12px;
+  color: #4a6cf7;
+}
+
+/* CONTENT */
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+/* PANELS */
+.panel {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.panel.sticky {
+  position: sticky;
+  top: 100px;
+}
+
+/* CHART */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 180px;
+  gap: 12px;
+}
+
+.bar-chart div {
+  flex: 1;
+  background: #4a6cf7;
+  border-radius: 6px 6px 0 0;
+}
+
+/* TABLE */
+.tests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tests-table th,
+.tests-table td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.tests-table th {
+  background: #f1f5f9;
+}
+
+/* SESSIONS */
+.session-card {
+  padding: 1rem;
+  background: #fff7ed;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.session-card.muted {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}

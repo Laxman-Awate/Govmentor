@@ -1,0 +1,50 @@
+/* DashboardLayout.css */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* In DashboardLayout.css */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px; /* Adjust based on your sidebar width */
+  transition: margin-left 0.3s ease;
+  position: relative;
+}
+
+/* Add this new rule for the navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 250px; /* Match the sidebar width */
+  z-index: 1000; /* Ensure navbar is above sidebar */
+  height: 70px; /* Match the padding-top of the sidebar */
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .dashboard-layout.collapsed .main-content {
+    margin-left: 0;
+  }
+}

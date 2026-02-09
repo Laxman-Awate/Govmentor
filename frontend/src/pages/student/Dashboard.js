@@ -6,107 +6,162 @@ import {
   faClock,
   faUserTie,
   faChartLine,
-  faCheck,
-  faCalendarDays,
+  faBolt,
   faBrain,
   faPenNib,
   faUsers,
-  faBolt
+  faCalendarDays
 } from "@fortawesome/free-solid-svg-icons";
+import QuickAction from "../../components/QuickAction";
 
 function StudentDashboard() {
   const { currentUser } = useAuth();
 
   return (
     <div className="student-dashboard">
-      {/* HEADER */}
+      {/* ================= HEADER ================= */}
       <div className="dashboard-header">
         <h1>
-          Welcome back, {currentUser?.username || "Laxman Awate"}! 👋
+          Welcome back, {currentUser?.username || "Student"} 👋
         </h1>
-        <p>Here's an overview of your preparation progress.</p>
+        <p>Here’s an overview of your preparation progress</p>
       </div>
 
-      {/* STATS */}
-      <div className="dashboard-stats">
-        <StatCard icon={faBook} title="Tests Completed" value="12" />
-        <StatCard icon={faClock} title="Study Hours" value="48" />
-        <StatCard icon={faUserTie} title="Mentor Sessions" value="3" />
-        <StatCard icon={faChartLine} title="Overall Progress" value="65%" />
+      {/* ================= STATS ================= */}
+      <div className="stats-grid">
+        <StatCard icon={faBook} value="12" label="Tests Completed" />
+        <StatCard icon={faClock} value="48 hrs" label="Study Hours" />
+        <StatCard icon={faUserTie} value="3" label="Mentor Sessions" />
+        <StatCard icon={faChartLine} value="65%" label="Overall Progress" />
       </div>
 
-      {/* TODAY GOALS */}
-      <div className="dashboard-card">
-        <h2>🎯 Today’s Goals</h2>
-        <GoalItem text="Complete 2 mock tests" completed />
-        <GoalItem text="Review GS Paper I notes" />
-        <GoalItem text="Practice 30 MCQs" />
-      </div>
-
-      {/* UPCOMING SESSION */}
-      <div className="dashboard-card">
-        <h2>
-          <FontAwesomeIcon icon={faCalendarDays} /> Upcoming Sessions
-        </h2>
-
-        <div className="session-box">
-          <h3>Strategy Session with Mentor</h3>
-          <p>Tomorrow, 10:00 AM</p>
-        </div>
-
-        <p className="no-session">No more upcoming sessions</p>
-
-        <button className="book-btn">Book a Session</button>
-      </div>
-
-      {/* QUICK ACTIONS */}
-      <div className="dashboard-card">
-        <h2>
+      {/* ================= QUICK ACTIONS ================= */}
+      <div className="section">
+        <h2 className="section-title">
           <FontAwesomeIcon icon={faBolt} /> Quick Actions
         </h2>
 
         <div className="quick-actions-grid">
-          <QuickAction icon={faBrain} label="Generate Study Plan" primary />
+          <QuickAction
+            icon={faBrain}
+            label="Generate Study Plan"
+            onClick={() => console.log("Generate Study Plan clicked")}
+          />
           <QuickAction icon={faPenNib} label="Take Mock Test" />
           <QuickAction icon={faBook} label="Browse PYQs" />
-          <QuickAction icon={faUsers} label="Find Mentor" />
+          <QuickAction
+            icon={faUsers}
+            label="Find Mentor"
+            link="/mentors"
+          />
         </div>
       </div>
+
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="content-grid">
+        {/* LEFT COLUMN */}
+        <div>
+          <PerformancePanel />
+          <RecentTests />
+        </div>
+
+        {/* RIGHT COLUMN */}
+        <UpcomingSessions />
+      </div>
     </div>
   );
 }
 
-/* ---------- COMPONENTS ---------- */
+/* ================= COMPONENTS ================= */
 
-function StatCard({ icon, title, value }) {
+function StatCard({ icon, value, label }) {
   return (
     <div className="stat-card">
-      <FontAwesomeIcon icon={icon} className="stat-icon" />
-      <h3>{value}</h3>
-      <p>{title}</p>
-    </div>
-  );
-}
-
-function GoalItem({ text, completed }) {
-  return (
-    <div className="goal-item">
-      <div className={`goal-checkbox ${completed ? "completed" : ""}`}>
-        {completed && <FontAwesomeIcon icon={faCheck} />}
+      <div className="stat-icon">
+        <FontAwesomeIcon icon={icon} />
       </div>
-      <span className={`goal-text ${completed ? "completed" : ""}`}>
-        {text}
-      </span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
     </div>
   );
 }
 
-function QuickAction({ icon, label, primary }) {
+/* ---------- PERFORMANCE ---------- */
+function PerformancePanel() {
   return (
-    <button className={`quick-action-btn ${primary ? "primary" : ""}`}>
-      <FontAwesomeIcon icon={icon} className="qa-icon" />
-      <span>{label}</span>
-    </button>
+    <div className="panel">
+      <h2 className="panel-title">
+        <FontAwesomeIcon icon={faChartLine} /> Performance
+      </h2>
+
+      <div className="bar-chart">
+        <div style={{ height: "60%" }} />
+        <div style={{ height: "75%" }} />
+        <div style={{ height: "50%" }} />
+        <div style={{ height: "85%" }} />
+        <div style={{ height: "70%" }} />
+      </div>
+    </div>
+  );
+}
+
+/* ---------- RECENT TESTS ---------- */
+function RecentTests() {
+  return (
+    <div className="panel">
+      <h2 className="panel-title">
+        <FontAwesomeIcon icon={faBook} /> Recent Tests
+      </h2>
+
+      <table className="tests-table">
+        <thead>
+          <tr>
+            <th>Test Name</th>
+            <th>Date</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GS Paper I</td>
+            <td>05 Feb 2026</td>
+            <td>78%</td>
+          </tr>
+          <tr>
+            <td>Polity Mock</td>
+            <td>02 Feb 2026</td>
+            <td>82%</td>
+          </tr>
+          <tr>
+            <td>History Test</td>
+            <td>30 Jan 2026</td>
+            <td>74%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ---------- UPCOMING SESSIONS ---------- */
+function UpcomingSessions() {
+  return (
+    <div className="panel sticky">
+      <h2 className="panel-title">
+        <FontAwesomeIcon icon={faCalendarDays} /> Upcoming Sessions
+      </h2>
+
+      <div className="session-card">
+        <h4>Strategy Session with Mentor</h4>
+        <p>Tomorrow • 10:00 AM</p>
+      </div>
+
+      <div className="session-card muted">
+        No more upcoming sessions
+      </div>
+    </div>
   );
 }
 
