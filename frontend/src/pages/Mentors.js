@@ -3,149 +3,222 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faStar, 
-  faMapMarkerAlt, 
-  faGraduationCap, 
-  faUserTie,
+  faStarHalfAlt,
+  faMapMarkerAlt,
+  faGraduationCap,
+  faBriefcase,
+  faFilter,
   faSearch
 } from '@fortawesome/free-solid-svg-icons';
 import './Mentors.css';
 
-function Mentors() {
-  const [searchQuery, setSearchQuery] = useState('');
+const Mentors = () => {
+  const [priceRange, setPriceRange] = useState(1000);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(null);
 
+  // Mock data for mentors
   const mentors = [
     {
       id: 1,
       name: "Dr. Sarah Johnson",
-      subject: "Political Science",
+      title: "Senior Civil Services Mentor",
+      experience: "10+ years",
       rating: 4.8,
       reviews: 128,
-      experience: "8+ years",
-      price: 800,
-      location: "Mumbai, India",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
-      available: true
+      price: 999,
+      subjects: ["UPSC", "State PSC", "Interview Prep"],
+      image: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
       id: 2,
       name: "Prof. Rajesh Kumar",
-      subject: "Indian Economy",
+      title: "IAS Mentor & Educator",
+      experience: "15+ years",
       rating: 4.9,
-      reviews: 215,
-      experience: "12+ years",
-      price: 1000,
-      location: "Delhi, India",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      available: true
+      reviews: 245,
+      price: 1499,
+      subjects: ["UPSC", "Essay Writing", "Current Affairs"],
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
     },
-    // Add more mentors as needed
+    {
+      id: 3,
+      name: "Dr. Priya Sharma",
+      title: "Psychology Expert",
+      experience: "8+ years",
+      rating: 4.7,
+      reviews: 98,
+      price: 799,
+      subjects: ["Psychology", "Interview Prep", "Personality Development"],
+      image: "https://randomuser.me/api/portraits/women/68.jpg"
+    }
   ];
 
-  const filteredMentors = mentors.filter(mentor => 
-    mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    mentor.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    mentor.location.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const categories = [
+    "UPSC Preparation",
+    "State PSC",
+    "Interview Guidance",
+    "Essay Writing",
+    "Current Affairs",
+    "Optional Subjects",
+    "CSAT",
+    "Personality Development"
+  ];
+
+  const handleCategoryToggle = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter(c => c !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+
+  const handleRatingSelect = (rating) => {
+    setSelectedRating(selectedRating === rating ? null : rating);
+  };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 1; i <= 5; i++) {
+      if (i <= fullStars) {
+        stars.push(<FontAwesomeIcon key={i} icon={faStar} className="star-icon filled" />);
+      } else if (i === fullStars + 1 && hasHalfStar) {
+        stars.push(<FontAwesomeIcon key={i} icon={faStarHalfAlt} className="star-icon half" />);
+      } else {
+        stars.push(<FontAwesomeIcon key={i} icon={faStar} className="star-icon" />);
+      }
+    }
+    return stars;
+  };
 
   return (
     <div className="mentors-page">
       <div className="mentors-header">
         <h1>Find Your Perfect Mentor</h1>
-        <p>Connect with experienced mentors to guide your UPSC preparation</p>
-        <div className="search-container">
-          <FontAwesomeIcon icon={faSearch} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search by subject, name, or location" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button className="search-btn">Search</button>
-        </div>
+        <p>Connect with experienced mentors to guide you through your exam preparation journey</p>
       </div>
 
       <div className="mentors-container">
-        <div className="filters-sidebar">
-          <h3>Filters</h3>
-          <div className="filter-section">
-            <h4>Subject</h4>
-            <select>
-              <option>All Subjects</option>
-              <option>Political Science</option>
-              <option>History</option>
-              <option>Geography</option>
-              <option>Economics</option>
-            </select>
+        {/* Filters Section */}
+        <div className="filters-section">
+          <div className="filters-header">
+            <FontAwesomeIcon icon={faFilter} />
+            <h3>Filters</h3>
           </div>
-          <div className="filter-section">
-            <h4>Experience</h4>
-            <label><input type="checkbox" /> 1-3 years</label>
-            <label><input type="checkbox" /> 3-5 years</label>
-            <label><input type="checkbox" /> 5+ years</label>
+
+          <div className="filter-group">
+            <h4>Categories</h4>
+            <div className="search-box">
+              <FontAwesomeIcon icon={faSearch} className="search-icon" />
+              <input type="text" placeholder="Search categories..." />
+            </div>
+            <div className="categories-list">
+              {categories.map((category, index) => (
+                <div 
+                  key={index} 
+                  className={`category-tag ${selectedCategories.includes(category) ? 'selected' : ''}`}
+                  onClick={() => handleCategoryToggle(category)}
+                >
+                  {category}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="filter-section">
+
+          <div className="filter-group">
+            <h4>Price Range</h4>
+            <div className="price-range">
+              <span>₹0</span>
+              <input 
+                type="range" 
+                min="0" 
+                max="5000" 
+                value={priceRange} 
+                onChange={(e) => setPriceRange(e.target.value)} 
+              />
+              <span>₹5000+</span>
+            </div>
+            <div className="price-display">Up to ₹{priceRange}</div>
+          </div>
+
+          <div className="filter-group">
             <h4>Rating</h4>
-            {[4, 3, 2, 1].map((rating) => (
-              <label key={rating}>
-                <input type="checkbox" />
-                {[...Array(5)].map((_, i) => (
-                  <FontAwesomeIcon 
-                    key={i}
-                    icon={faStar} 
-                    className={i < rating ? "star-filled" : "star-empty"} 
-                  />
-                ))} & Up
-              </label>
+            {[5, 4, 3, 2, 1].map((rating) => (
+              <div 
+                key={rating} 
+                className={`rating-option ${selectedRating === rating ? 'selected' : ''}`}
+                onClick={() => handleRatingSelect(rating)}
+              >
+                {renderStars(rating)}
+                <span>& Up</span>
+              </div>
             ))}
           </div>
         </div>
 
+        {/* Mentors List */}
         <div className="mentors-list">
-          {filteredMentors.length > 0 ? (
-            filteredMentors.map((mentor) => (
-              <MentorCard key={mentor.id} mentor={mentor} />
-            ))
-          ) : (
-            <div className="no-results">
-              <h3>No mentors found</h3>
-              <p>Try adjusting your search or filters</p>
+          <div className="mentors-sort">
+            <span>{mentors.length} mentors found</span>
+            <select>
+              <option>Sort by: Recommended</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Rating: High to Low</option>
+            </select>
+          </div>
+
+          {mentors.map((mentor) => (
+            <div key={mentor.id} className="mentor-card">
+              <div className="mentor-image">
+                <img src={mentor.image} alt={mentor.name} />
+              </div>
+              <div className="mentor-info">
+                <div className="mentor-header">
+                  <h3>{mentor.name}</h3>
+                  <span className="mentor-price">₹{mentor.price}/hr</span>
+                </div>
+                <p className="mentor-title">{mentor.title}</p>
+                
+                <div className="mentor-rating">
+                  <div className="stars">
+                    {renderStars(mentor.rating)}
+                    <span>{mentor.rating}</span>
+                    <span className="reviews">({mentor.reviews} reviews)</span>
+                  </div>
+                </div>
+
+                <div className="mentor-details">
+                  <div className="detail-item">
+                    <FontAwesomeIcon icon={faBriefcase} />
+                    <span>{mentor.experience} experience</span>
+                  </div>
+                  <div className="detail-item">
+                    <FontAwesomeIcon icon={faGraduationCap} />
+                    <span>500+ students mentored</span>
+                  </div>
+                </div>
+
+                <div className="mentor-subjects">
+                  {mentor.subjects.map((subject, index) => (
+                    <span key={index} className="subject-tag">{subject}</span>
+                  ))}
+                </div>
+
+                <div className="mentor-actions">
+                  <button className="btn btn-outline">View Profile</button>
+                  <button className="btn btn-primary">Book Session</button>
+                </div>
+              </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </div>
   );
-}
-
-const MentorCard = ({ mentor }) => (
-  <div className="mentor-card">
-    <div className="mentor-image">
-      <img src={mentor.image} alt={mentor.name} />
-      {mentor.available && <span className="online-badge">Online</span>}
-    </div>
-    <div className="mentor-info">
-      <h3>{mentor.name}</h3>
-      <p className="mentor-subject">
-        <FontAwesomeIcon icon={faGraduationCap} /> {mentor.subject}
-      </p>
-      <div className="mentor-rating">
-        <span className="rating">
-          <FontAwesomeIcon icon={faStar} className="star-filled" /> {mentor.rating}
-        </span>
-        <span className="reviews">({mentor.reviews} reviews)</span>
-      </div>
-      <p className="mentor-location">
-        <FontAwesomeIcon icon={faMapMarkerAlt} /> {mentor.location}
-      </p>
-      <p className="mentor-experience">
-        <FontAwesomeIcon icon={faUserTie} /> {mentor.experience} experience
-      </p>
-      <div className="mentor-footer">
-        <span className="price">₹{mentor.price}/hr</span>
-        <button className="book-btn">Book Session</button>
-      </div>
-    </div>
-  </div>
-);
+};
 
 export default Mentors;

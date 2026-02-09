@@ -47,11 +47,9 @@ function App() {
           } />
         </Route>
 
-        <Route path="/mentors" element={
-          <DashboardLayout>
-            <Mentors />
-          </DashboardLayout>
-        } />
+       <Route element={<DashboardLayout userType={null} />}>
+          <Route path="/mentors" element={<Mentors />} />
+        </Route>
 
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
